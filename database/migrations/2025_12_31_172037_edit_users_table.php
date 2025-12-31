@@ -15,6 +15,7 @@ return new class extends Migration
             $table->renameColumn('name', 'first_name');
             $table->string('last_name', 100)->after('first_name');
             $table->string('phone', 20)->nullable()->after('last_name');
+            $table->boolean('deleted')->default(0);
         });
     }
 
