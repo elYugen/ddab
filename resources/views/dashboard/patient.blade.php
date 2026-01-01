@@ -434,6 +434,7 @@ $(document).ready(function () {
             url: "{{ route('dashboard.patient.index') }}",
             type: "GET",
         },
+        order: [],
         columns: [
             { data: 'last_name' },
             { data: 'first_name' },

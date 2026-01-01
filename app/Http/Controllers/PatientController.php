@@ -20,7 +20,7 @@ class PatientController extends Controller
             return response()->json(['data' => []]);
         }
 
-        $patients = Patient::where('company_id', $company->id)->where('deleted', 0)->get();
+        $patients = Patient::where('company_id', $company->id)->where('deleted', 0)->latest()->get();
 
         return response()->json([
             'data' => $patients

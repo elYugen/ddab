@@ -21,7 +21,7 @@ class VehicleController extends Controller
             return response()->json(['data' => []]);
         }
 
-        $vehicles = Vehicle::where('company_id', $company->id)->where('deleted', 0)->get();
+        $vehicles = Vehicle::where('company_id', $company->id)->where('deleted', 0)->latest()->get();
 
         return response()->json([
             'data' => $vehicles

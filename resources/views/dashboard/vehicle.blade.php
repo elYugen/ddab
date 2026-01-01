@@ -483,6 +483,7 @@ $(document).ready(function () {
             url: "{{ route('dashboard.vehicle.index') }}",
             type: "GET",
         },
+        order: [],
         columns: [
             { data: 'name' },
             { data: 'type' },
