@@ -57,4 +57,9 @@ class DashboardController extends Controller
         return view('dashboard.vehicle');
     }
 
+    public function user()
+    {
+        return view('dashboard.user');
+    }
+
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,15 @@ Route::prefix('/dashboard')->group(function () {
             Route::post('/store', [VehicleController::class, 'store'])->name('dashboard.vehicle.store');
             Route::put('/destroy/{vehicle}', [VehicleController::class, 'destroy'])->name('dashboard.vehicle.destroy');
             Route::put('/update/{vehicle}', [VehicleController::class, 'update'])->name('dashboard.vehicle.update');
+        });
+
+        Route::prefix('/user')->group(function () {
+            Route::get('/', [DashboardController::class, 'user'])->name('dashboard.user');
+            Route::get('/get', [UserController::class, 'index'])->name('dashboard.user.index');
+            Route::get('/get/{user}', [UserController::class, 'show'])->name('dashboard.user.show');
+            Route::post('/store', [UserController::class, 'store'])->name('dashboard.user.store');
+            Route::put('/destroy/{user}', [UserController::class, 'destroy'])->name('dashboard.user.destroy');
+            Route::put('/update/{user}', [UserController::class, 'update'])->name('dashboard.user.update');
         });
 
 
