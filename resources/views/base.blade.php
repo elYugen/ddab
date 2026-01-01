@@ -30,8 +30,21 @@
     
     @yield('styles')
 </head>
-<body class="bg-gray-50 font-inter antialiased">
+<body class="bg-gray-50 font-inter antialiased preload">
     @yield('content')
     @yield('script')
+    
+    <!-- desac les transitions pendant le chargement initial -->
+    <style>
+        .preload * {
+            transition: none !important;
+            animation: none !important;
+        }
+    </style>
+    <script>
+        window.addEventListener('load', function() {
+            document.body.classList.remove('preload');
+        });
+    </script>
 </body>
 </html>

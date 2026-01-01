@@ -51,5 +51,10 @@ class DashboardController extends Controller
     {
         return view('dashboard.patient');
     }
+    
+    public function vehicle()
+    {
+        return view('dashboard.vehicle');
+    }
 
 }

@@ -1,10 +1,10 @@
 @extends('base')
-@section('title', 'Gestion des patients')
+@section('title', 'Gestion des véhicules')
 
 @section('styles')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
 <style>
-.input {
+input, select, textarea {
     width: 100%;
     padding: 12px 16px;
     border: 2px solid #e5e7eb;
@@ -13,16 +13,16 @@
     transition: all 0.3s ease;
     background: #f9fafb;
 }
-.input:focus {
+input:focus, select:focus, textarea:focus {
     outline: none;
     border-color: #6366f1;
     background: white;
     box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
 }
-.input::placeholder {
+input::placeholder, select::placeholder, textarea::placeholder {
     color: #9ca3af;
 }
-.input:disabled {
+input:disabled, select:disabled, textarea:disabled {
     background: #f3f4f6;
     color: #6b7280;
     cursor: not-allowed;
@@ -186,13 +186,13 @@
     gap: 12px;
 }
 
-#patientsTable_wrapper .dataTables_filter input {
+#vehiclesTable_wrapper .dataTables_filter input {
     border: 2px solid #e5e7eb;
     border-radius: 8px;
     padding: 8px 12px;
     transition: all 0.3s ease;
 }
-#patientsTable_wrapper .dataTables_filter input:focus {
+#vehiclesTable_wrapper .dataTables_filter input:focus {
     outline: none;
     border-color: #6366f1;
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
@@ -234,7 +234,9 @@
     color: #059669;
 }
 
-.view-mode .input {
+.view-mode input,
+.view-mode select,
+.view-mode textarea {
     background: #f9fafb;
     border-color: transparent;
     color: #374151;
@@ -250,27 +252,27 @@
         <div class="page-header">
             <h1 class="page-title">
                 <svg class="icon" style="width:32px;height:32px" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
                 </svg>
-                Gestion des patients
+                Gestion des véhicules
             </h1>
-            <button id="addPatientBtn" class="btn-primary">
+            <button id="addVehicleBtn" class="btn-primary">
                 <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
                 </svg>
-                Ajouter un patient
+                Ajouter un véhicule
             </button>
         </div>
 
         <div class="card">
-            <table id="patientsTable" class="w-full text-sm text-left text-gray-700">
+            <table id="vehiclesTable" class="w-full text-sm text-left text-gray-700">
                 <thead class="text-xs uppercase bg-gray-100">
                     <tr>
                         <th class="p-3 rounded-tl-lg">Nom</th>
-                        <th class="p-3">Prénom</th>
-                        <th class="p-3">Date de naissance</th>
-                        <th class="p-3">Téléphone</th>
-                        <th class="p-3">Sécurité sociale</th>
+                        <th class="p-3">Type</th>
+                        <th class="p-3">Immatriculation</th>
+                        <th class="p-3">Catégorie</th>
+                        <th class="p-3">En service</th>
                         <th class="p-3 rounded-tr-lg">Actions</th>
                     </tr>
                 </thead>
@@ -279,14 +281,14 @@
     </div>
 </div>
 
-<!-- MODAL PATIENT (Ajout / Voir / Éditer) -->
-<div id="patientModal" class="modal-backdrop fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
+<!-- MODAL VÉHICULE (Ajout / Voir / Éditer) -->
+<div id="vehicleModal" class="modal-backdrop fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
     <div class="modal-content bg-white w-full max-w-lg rounded-2xl p-8 shadow-2xl">
         <div class="modal-header">
             <div class="modal-header-left">
                 <div id="modalIcon" class="modal-icon add">
                     <svg class="icon" style="width:24px;height:24px" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
                     </svg>
                 </div>
                 <h2 id="modalTitle" class="text-2xl font-bold text-gray-900"></h2>
@@ -299,47 +301,94 @@
             </button>
         </div>
 
-        <form id="patientForm">
-            <input type="hidden" id="patientId">
+        <form id="vehicleForm">
+            <input type="hidden" id="vehicleId">
 
             <div class="grid grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-sm font-medium text-gray-600 mb-2">Nom</label>
-                    <input id="last_name" placeholder="Dupont" class="input" required>
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Nom du véhicule</label>
+                    <input id="name" placeholder="Ambulance A" required>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-600 mb-2">Prénom</label>
-                    <input id="first_name" placeholder="Jean" class="input" required>
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Type</label>
+                    <select id="type" required>
+                        <option value="">Sélectionner...</option>
+                        <option value="ambulance">Ambulance</option>
+                        <option value="vsl">VSL</option>
+                        <option value="taxi">Taxi</option>
+                    </select>
                 </div>
             </div>
 
-            <div class="mt-4">
-                <label class="block text-sm font-medium text-gray-600 mb-2">Date de naissance</label>
-                <input id="birth_date" type="date" class="input">
+            <div class="grid grid-cols-2 gap-4 mt-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Immatriculation</label>
+                    <input id="registration_number" placeholder="AB-123-CD" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Numéro VIN</label>
+                    <input id="vin_number" placeholder="VF1RFD00123456789" maxlength="17">
+                </div>
             </div>
 
-            <div class="mt-4">
-                <label class="block text-sm font-medium text-gray-600 mb-2">Téléphone</label>
-                <input id="phone" placeholder="06 12 34 56 78" class="input">
+            <div class="grid grid-cols-2 gap-4 mt-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Catégorie</label>
+                    <select id="category" class="input">
+                        <option value="">Sélectionner...</option>
+                        <option value="A">Catégorie A</option>
+                        <option value="B">Catégorie B</option>
+                        <option value="C">Catégorie C</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-600 mb-2">En service</label>
+                    <div class="flex items-center h-full">
+                        <input id="in_service" type="checkbox" class="w-5 h-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                        <label for="in_service" class="ml-2 text-sm text-gray-700">Véhicule actuellement en service</label>
+                    </div>
+                </div>
             </div>
 
-            <div class="mt-4">
-                <label class="block text-sm font-medium text-gray-600 mb-2">N° Sécurité sociale</label>
-                <input id="social_security_number" placeholder="1 23 45 67 890 123" class="input">
-            </div>
-
-            <div class="mt-4 p-4 bg-gray-50 rounded-xl">
+            <div class="mt-4 p-4 bg-blue-50 rounded-xl">
                 <label class="block text-sm font-semibold text-gray-700 mb-3">
                     <svg class="icon-sm inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                     </svg>
-                    Adresse
+                    Dates de mise en service
                 </label>
-                <input id="street" placeholder="N/A" class="input">
-                <div class="grid grid-cols-2 gap-3 mt-3">
-                    <input id="postal_code" placeholder="N/A" class="input" maxlength="10">
-                    <input id="city" placeholder="N/A" class="input">
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs text-gray-600 mb-1">Date de début</label>
+                        <input id="service_start_date" type="date" class="input">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-600 mb-1">Date de fin</label>
+                        <input id="service_end_date" type="date" class="input">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4 p-4 bg-green-50 rounded-xl">
+                <label class="block text-sm font-semibold text-gray-700 mb-3">
+                    <svg class="icon-sm inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                    Agrément ARS
+                </label>
+                <div class="mb-3">
+                    <label class="block text-xs text-gray-600 mb-1">Numéro d'agrément</label>
+                    <input id="ars_agreement_number" placeholder="ARS-2024-001" class="input">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs text-gray-600 mb-1">Date de début</label>
+                        <input id="ars_agreement_start_date" type="date" class="input">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-600 mb-1">Date de fin</label>
+                        <input id="ars_agreement_end_date" type="date" class="input">
+                    </div>
                 </div>
             </div>
 
@@ -374,7 +423,7 @@
                 <h2 class="text-xl font-bold text-gray-900">Confirmation</h2>
             </div>
         </div>
-        <p class="text-gray-600 mb-6">Êtes-vous sûr de vouloir supprimer ce patient ? Cette action est irréversible.</p>
+        <p class="text-gray-600 mb-6">Êtes-vous sûr de vouloir supprimer ce véhicule ? Cette action est irréversible.</p>
 
         <div class="flex justify-end gap-3">
             <button id="cancelDelete" class="btn-secondary">
@@ -428,21 +477,21 @@ const icons = {
 };
 
 $(document).ready(function () {
-    table = $('#patientsTable').DataTable({
+    table = $('#vehiclesTable').DataTable({
         processing: true,
         ajax: {
-            url: "{{ route('dashboard.patient.index') }}",
+            url: "{{ route('dashboard.vehicle.index') }}",
             type: "GET",
         },
         columns: [
-            { data: 'last_name' },
-            { data: 'first_name' },
+            { data: 'name' },
+            { data: 'type' },
+            { data: 'registration_number' },
+            { data: 'category' },
             { 
-                data: 'birth_date',
-                render: data => data ? new Date(data).toLocaleDateString('fr-FR') : ''
+                data: 'in_service',
+                render: data => data ? '<span class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium">En service</span>' : '<span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium">Hors service</span>'
             },
-            { data: 'phone' },
-            { data: 'social_security_number' },
             {
                 data: 'id',
                 orderable: false,
@@ -463,7 +512,8 @@ $(document).ready(function () {
 
 // Fonction pour activer/désactiver les inputs
 function setInputsDisabled(disabled) {
-    $('#patientForm input:not([type="hidden"])').prop('disabled', disabled);
+    $('#vehicleForm input:not([type="hidden"]):not([type="checkbox"]), #vehicleForm select').prop('disabled', disabled);
+    $('#vehicleForm input[type="checkbox"]').prop('disabled', disabled);
     isViewMode = disabled;
 }
 
@@ -474,19 +524,19 @@ function updateModalUI(mode) {
         $('#enableEditBtn').removeClass('hidden');
         $('#submitBtn').addClass('hidden');
         $('#modalIcon').removeClass('add').addClass('view');
-        $('#patientForm').addClass('view-mode');
+        $('#vehicleForm').addClass('view-mode');
     } else if (mode === 'edit') {
         setInputsDisabled(false);
         $('#enableEditBtn').addClass('hidden');
         $('#submitBtn').removeClass('hidden');
         $('#modalIcon').removeClass('view').addClass('add');
-        $('#patientForm').removeClass('view-mode');
+        $('#vehicleForm').removeClass('view-mode');
     } else { // add
         setInputsDisabled(false);
         $('#enableEditBtn').addClass('hidden');
         $('#submitBtn').removeClass('hidden');
         $('#modalIcon').removeClass('view').addClass('add');
-        $('#patientForm').removeClass('view-mode');
+        $('#vehicleForm').removeClass('view-mode');
     }
 }
 </script>
@@ -494,54 +544,57 @@ function updateModalUI(mode) {
 let deleteId = null;
 
 /* OUVERTURE MODAL AJOUT */
-$('#addPatientBtn').click(() => {
-    $('#modalTitle').text('Nouveau patient');
-    $('#patientForm')[0].reset();
-    $('#patientId').val('');
+$('#addVehicleBtn').click(() => {
+    $('#modalTitle').text('Nouveau véhicule');
+    $('#vehicleForm')[0].reset();
+    $('#vehicleId').val('');
     updateModalUI('add');
-    $('#patientModal').addClass('active');
+    $('#vehicleModal').addClass('active');
 });
 
 /* BOUTON ACTIVER ÉDITION */
 $('#enableEditBtn').click(() => {
-    $('#modalTitle').text('Modifier le patient');
+    $('#modalTitle').text('Modifier le véhicule');
     updateModalUI('edit');
 });
 
 /* FERMETURE MODALES */
-$('#closeModal').click(() => $('#patientModal').removeClass('active'));
+$('#closeModal').click(() => $('#vehicleModal').removeClass('active'));
 $('#cancelDelete').click(() => $('#deleteModal').removeClass('active'));
 $('#closeSuccess').click(() => $('#successModal').removeClass('active'));
 
 /* CRÉATION / ÉDITION */
-$('#patientForm').submit(function (e) {
+$('#vehicleForm').submit(function (e) {
     e.preventDefault();
 
     // Ne pas soumettre en mode lecture
     if (isViewMode) return;
 
-    const id = $('#patientId').val();
+    const id = $('#vehicleId').val();
     const method = id ? 'PUT' : 'POST';
     const url = id
-        ? `/dashboard/patient/update/${id}`
-        : `/dashboard/patient/store`;
+        ? `/dashboard/vehicle/update/${id}`
+        : `/dashboard/vehicle/store`;
 
     $.ajax({
         url,
         method,
         data: {
-            first_name: $('#first_name').val(),
-            last_name: $('#last_name').val(),
-            birth_date: $('#birth_date').val(),
-            phone: $('#phone').val(),
-            social_security_number: $('#social_security_number').val(),
-            street: $('#street').val(),
-            postal_code: $('#postal_code').val(),
-            city: $('#city').val(),
+            name: $('#name').val(),
+            type: $('#type').val(),
+            registration_number: $('#registration_number').val(),
+            vin_number: $('#vin_number').val(),
+            category: $('#category').val(),
+            in_service: $('#in_service').is(':checked') ? 1 : 0,
+            service_start_date: $('#service_start_date').val(),
+            service_end_date: $('#service_end_date').val(),
+            ars_agreement_number: $('#ars_agreement_number').val(),
+            ars_agreement_start_date: $('#ars_agreement_start_date').val(),
+            ars_agreement_end_date: $('#ars_agreement_end_date').val(),
             _token: "{{ csrf_token() }}"
         },
         success: () => {
-            $('#patientModal').removeClass('active');
+            $('#vehicleModal').removeClass('active');
             table.ajax.reload();
             
             // Afficher la modal de succès
@@ -549,39 +602,54 @@ $('#patientForm').submit(function (e) {
                 $('#successTitle').text('Modification enregistrée');
                 $('#successMessage').text('Les modifications ont bien été prises en compte.');
             } else {
-                $('#successTitle').text('Patient ajouté');
-                $('#successMessage').text('Le nouveau patient a été créé avec succès.');
+                $('#successTitle').text('Véhicule ajouté');
+                $('#successMessage').text('Le nouveau véhicule a été créé avec succès.');
             }
             $('#successModal').addClass('active');
         }
     });
 });
 
-/* VOIR LE PATIENT */
+/* VOIR LE VÉHICULE */
 $(document).on('click', '.viewBtn', function () {
     const id = $(this).data('id');
 
-    $.get(`/dashboard/patient/get/${id}`, function (patient) {
-        $('#modalTitle').text('Fiche patient');
-        $('#patientId').val(patient.id);
-        $('#first_name').val(patient.first_name);
-        $('#last_name').val(patient.last_name);
-        // Formater la date au format YYYY-MM-DD pour l'input date
-        if (patient.birth_date) {
-            const date = new Date(patient.birth_date);
-            const formatted = date.toISOString().split('T')[0];
-            $('#birth_date').val(formatted);
+    $.get(`/dashboard/vehicle/get/${id}`, function (vehicle) {
+        $('#modalTitle').text('Fiche véhicule');
+        $('#vehicleId').val(vehicle.id);
+        $('#name').val(vehicle.name);
+        $('#type').val(vehicle.type);
+        $('#registration_number').val(vehicle.registration_number);
+        $('#vin_number').val(vehicle.vin_number);
+        $('#category').val(vehicle.category);
+        $('#in_service').prop('checked', vehicle.in_service);
+        
+        // Formater les dates au format YYYY-MM-DD pour les inputs date
+        if (vehicle.service_start_date) {
+            $('#service_start_date').val(new Date(vehicle.service_start_date).toISOString().split('T')[0]);
         } else {
-            $('#birth_date').val('');
+            $('#service_start_date').val('');
         }
-        $('#phone').val(patient.phone);
-        $('#social_security_number').val(patient.social_security_number);
-        $('#street').val(patient.street);
-        $('#postal_code').val(patient.postal_code);
-        $('#city').val(patient.city);
+        if (vehicle.service_end_date) {
+            $('#service_end_date').val(new Date(vehicle.service_end_date).toISOString().split('T')[0]);
+        } else {
+            $('#service_end_date').val('');
+        }
+        
+        $('#ars_agreement_number').val(vehicle.ars_agreement_number);
+        if (vehicle.ars_agreement_start_date) {
+            $('#ars_agreement_start_date').val(new Date(vehicle.ars_agreement_start_date).toISOString().split('T')[0]);
+        } else {
+            $('#ars_agreement_start_date').val('');
+        }
+        if (vehicle.ars_agreement_end_date) {
+            $('#ars_agreement_end_date').val(new Date(vehicle.ars_agreement_end_date).toISOString().split('T')[0]);
+        } else {
+            $('#ars_agreement_end_date').val('');
+        }
 
         updateModalUI('view');
-        $('#patientModal').addClass('active');
+        $('#vehicleModal').addClass('active');
     });
 });
 
@@ -593,7 +661,7 @@ $(document).on('click', '.deleteBtn', function () {
 
 $('#confirmDelete').click(() => {
     $.ajax({
-        url: `/dashboard/patient/destroy/${deleteId}`,
+        url: `/dashboard/vehicle/destroy/${deleteId}`,
         method: 'PUT',
         data: { _token: "{{ csrf_token() }}" },
         success: () => {

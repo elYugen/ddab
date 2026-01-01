@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('ars_agreement_number', 50)->nullable();
             $table->date('ars_agreement_start_date')->nullable();
             $table->date('ars_agreement_end_date')->nullable();
+            $table->boolean('deleted')->default(0);
             $table->timestamps();
         });
     }
