@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('social_security_number');
             $table->string('address');
             $table->string('phone');
+            $table->boolean('deleted');
             $table->timestamps();
         });
     }

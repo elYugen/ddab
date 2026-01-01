@@ -47,4 +47,9 @@ class DashboardController extends Controller
         return view('dashboard.index', compact('stats', 'globalStats', 'user'));
     }
 
+    public function patient()
+    {
+        return view('dashboard.patient');
+    }
+
 }

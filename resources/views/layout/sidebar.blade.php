@@ -40,13 +40,17 @@
         <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-3">Menu</div>
         <div class="space-y-1">
             
-            <!-- Dashboard - Active -->
-            <a href="#" class="group flex items-center px-3 py-2.5 text-sm font-medium text-indigo-600 bg-indigo-50 rounded-lg border-l-4 border-indigo-600 transition-all duration-200">
-                <svg class="w-5 h-5 mr-3 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            <!-- Dashboard -->
+            <a href="{{ route('dashboard') }}" 
+            class="group flex items-center px-3 py-2.5 text-sm font-medium rounded-lg border-l-4 transition-all duration-200 {{ request()->routeIs('dashboard') ? 'text-indigo-600 bg-indigo-50 border-indigo-600' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 hover:border-gray-200 border-transparent' }}">
+                <svg class="w-5 h-5 mr-3 transition-colors duration-200 {{ request()->routeIs('dashboard') ? 'text-indigo-600' : 'text-gray-400 group-hover:text-gray-600' }}" 
+                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                 </svg>
                 Tableau de bord
             </a>
+
 
             <!-- Gestion Salariés -->
             <a href="#" class="group flex items-center px-3 py-2.5 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-50 hover:text-gray-900 transition-all duration-200">
@@ -73,8 +77,10 @@
             </a>
 
             <!-- Patients -->
-            <a href="#" class="group flex items-center px-3 py-2.5 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-50 hover:text-gray-900 transition-all duration-200">
-                <svg class="w-5 h-5 mr-3 text-gray-400 group-hover:text-pink-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <a href="{{ route('dashboard.patient') }}" 
+            class="group flex items-center px-3 py-2.5 text-sm font-medium rounded-lg border-l-4 transition-all duration-200 {{ request()->routeIs('dashboard.patient') ? 'text-indigo-600 bg-indigo-50 border-indigo-600' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 hover:border-gray-200 border-transparent' }}">
+                <svg class="w-5 h-5 mr-3 transition-colors duration-200 {{ request()->routeIs('dashboard.patient') ? 'text-indigo-600' : 'text-gray-400 group-hover:text-gray-600' }}" 
+                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
                 Patients
