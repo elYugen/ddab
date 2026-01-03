@@ -151,10 +151,10 @@
             @endif
 
             <!-- Courses / Transports -->
-            <a href="#"
-                class="group flex items-center px-3 py-2.5 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-50 hover:text-gray-900 transition-all duration-200">
-                <svg class="w-5 h-5 mr-3 text-gray-400 group-hover:text-teal-500 transition-colors" fill="none"
-                    stroke="currentColor" viewBox="0 0 24 24">
+            <a href="{{ route('dashboard.transport') }}"
+                class="group flex items-center px-3 py-2.5 text-sm font-medium rounded-lg border-l-4 transition-all duration-200 {{ request()->routeIs('dashboard.transport') ? 'text-indigo-600 bg-indigo-50 border-indigo-600' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 hover:border-gray-200 border-transparent' }}">
+                <svg class="w-5 h-5 mr-3 transition-colors duration-200 {{ request()->routeIs('dashboard.transport') ? 'text-indigo-600' : 'text-gray-400 group-hover:text-teal-500' }}"
+                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
                 </svg>

@@ -6,6 +6,7 @@ use App\Http\Controllers\DisinfectionController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\TransportController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserDocumentController;
 use App\Http\Controllers\VehicleController;
@@ -93,6 +94,21 @@ Route::prefix('/dashboard')->group(function () {
             Route::post('/company/store', [DocumentController::class, 'storeCompanyDocument'])->name('dashboard.documents.company.store');
             Route::put('/company/update/{companyDocument}', [DocumentController::class, 'updateCompanyDocument'])->name('dashboard.documents.company.update');
             Route::delete('/company/destroy/{companyDocument}', [DocumentController::class, 'destroyCompanyDocument'])->name('dashboard.documents.company.destroy');
+        });
+
+        // Transport / Courses routes
+        Route::prefix('/transport')->group(function () {
+            Route::get('/', [DashboardController::class, 'transport'])->name('dashboard.transport');
+            Route::get('/calendar', [TransportController::class, 'calendar'])->name('dashboard.transport.calendar');
+            Route::get('/get', [TransportController::class, 'index'])->name('dashboard.transport.index');
+            Route::get('/get/{transport}', [TransportController::class, 'show'])->name('dashboard.transport.show');
+            Route::get('/drivers', [TransportController::class, 'getDrivers'])->name('dashboard.transport.drivers');
+            Route::get('/vehicles', [TransportController::class, 'getVehicles'])->name('dashboard.transport.vehicles');
+            Route::get('/patients', [TransportController::class, 'getPatients'])->name('dashboard.transport.patients');
+            Route::post('/store', [TransportController::class, 'store'])->name('dashboard.transport.store');
+            Route::put('/update/{transport}', [TransportController::class, 'update'])->name('dashboard.transport.update');
+            Route::patch('/update-date/{transport}', [TransportController::class, 'updateDate'])->name('dashboard.transport.update-date');
+            Route::delete('/destroy/{transport}', [TransportController::class, 'destroy'])->name('dashboard.transport.destroy');
         });
 
         Route::get('/documentation', [DashboardController::class, 'documentation'])->name('dashboard.documentation');

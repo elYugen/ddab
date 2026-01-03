@@ -95,5 +95,9 @@ class DashboardController extends Controller
         return view('dashboard.documents');
     }
 
-}
+    public function transport()
+    {
+        return view('dashboard.transport');
+    }
 
+}

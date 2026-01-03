@@ -412,6 +412,33 @@
                                         Désinfection
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="#stock">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                                        </svg>
+                                        Gestion du stock
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#documents">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                        </svg>
+                                        Documents
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#transports">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+                                        </svg>
+                                        Courses / Transports
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -1012,6 +1039,468 @@
                                     clés : véhicule, date, type, protocole, produit et l'agent qui a effectué l'opération.
                                     Utilisez la barre de recherche pour filtrer les résultats par véhicule ou par date.
                                 </p>
+                            </div>
+                        </section>
+
+                        <!-- Section Gestion du stock -->
+                        <section id="stock" class="doc-section">
+                            <div class="doc-section-header">
+                                <div class="doc-section-icon purple">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                                    </svg>
+                                </div>
+                                <h3 class="doc-section-title">Gestion du stock</h3>
+                            </div>
+
+                            <div class="doc-subsection">
+                                <h4>Présentation</h4>
+                                <p class="doc-text">
+                                    Le module de gestion du stock vous permet de suivre en temps réel l'inventaire de vos
+                                    produits et consommables médicaux. Gérez les entrées, les sorties et définissez des
+                                    seuils d'alerte pour éviter les ruptures.
+                                </p>
+                            </div>
+
+                            <div class="doc-subsection">
+                                <h4>Ajouter un article</h4>
+                                <div class="doc-step">
+                                    <div class="doc-step-number">1</div>
+                                    <div class="doc-step-content">
+                                        <h5>Nouvel article</h5>
+                                        <p>Cliquez sur "Nouvel article" pour ouvrir le formulaire de création.</p>
+                                    </div>
+                                </div>
+                                <div class="doc-step">
+                                    <div class="doc-step-number">2</div>
+                                    <div class="doc-step-content">
+                                        <h5>Informations de base</h5>
+                                        <p>Renseignez le nom de l'article, l'unité de mesure et la quantité initiale.</p>
+                                    </div>
+                                </div>
+                                <div class="doc-step">
+                                    <div class="doc-step-number">3</div>
+                                    <div class="doc-step-content">
+                                        <h5>Seuil d'alerte</h5>
+                                        <p>Définissez un seuil en dessous duquel une alerte sera affichée.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="doc-subsection">
+                                <h4>Champs du formulaire</h4>
+                                <table class="field-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Champ</th>
+                                            <th>Description</th>
+                                            <th>Statut</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Nom de l'article</strong></td>
+                                            <td>Désignation du produit (ex: "Gants stériles", "Compresses")</td>
+                                            <td><span class="badge required">Obligatoire</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Quantité</strong></td>
+                                            <td>Quantité initiale en stock</td>
+                                            <td><span class="badge required">Obligatoire</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Unité</strong></td>
+                                            <td>Unité de mesure (boîte, litre, unité, paire...)</td>
+                                            <td><span class="badge required">Obligatoire</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Seuil d'alerte</strong></td>
+                                            <td>Quantité minimale avant alerte de réapprovisionnement</td>
+                                            <td><span class="badge optional">Optionnel</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Image</strong></td>
+                                            <td>Photo du produit pour identification visuelle</td>
+                                            <td><span class="badge optional">Optionnel</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="doc-subsection">
+                                <h4>Mouvements de stock</h4>
+                                <ul class="doc-list">
+                                    <li>
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                        </svg>
+                                        <span><strong>Entrée (+) :</strong> Utilisez le bouton vert pour ajouter du stock
+                                            lors d'un réapprovisionnement</span>
+                                    </li>
+                                    <li>
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M20 12H4" />
+                                        </svg>
+                                        <span><strong>Sortie (-) :</strong> Utilisez le bouton orange pour retirer du stock
+                                            lors d'une utilisation</span>
+                                    </li>
+                                    <li>
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <span><strong>Historique :</strong> Consultez l'historique complet des mouvements
+                                            via le bouton horloge</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="doc-subsection">
+                                <h4>États du stock</h4>
+                                <ul class="doc-list">
+                                    <li>
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <span><strong>OK (vert) :</strong> Stock supérieur au seuil d'alerte</span>
+                                    </li>
+                                    <li>
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                        </svg>
+                                        <span><strong>Stock bas (orange) :</strong> Stock inférieur ou égal au seuil
+                                            d'alerte</span>
+                                    </li>
+                                    <li>
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        <span><strong>Rupture (rouge) :</strong> Stock à zéro, réapprovisionnement urgent
+                                            nécessaire</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="doc-warning">
+                                <div class="doc-warning-title">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                    </svg>
+                                    Important
+                                </div>
+                                <p>La suppression d'un article entraîne également la suppression de tout son historique de
+                                    mouvements.</p>
+                            </div>
+                        </section>
+
+                        <!-- Section Documents -->
+                        <section id="documents" class="doc-section">
+                            <div class="doc-section-header">
+                                <div class="doc-section-icon orange">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                </div>
+                                <h3 class="doc-section-title">Gestion des documents</h3>
+                            </div>
+
+                            <div class="doc-subsection">
+                                <h4>Mes documents (tous les utilisateurs)</h4>
+                                <p class="doc-text">
+                                    Chaque salarié peut téléverser et gérer ses propres documents professionnels depuis la
+                                    page "Mes documents". Ces documents sont privés et ne sont visibles que par le salarié
+                                    lui-même et les administrateurs.
+                                </p>
+                                <table class="field-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Type de document</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>AFGSU</strong></td>
+                                            <td>Attestation de Formation aux Gestes et Soins d'Urgence</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Diplôme</strong></td>
+                                            <td>Diplôme d'État d'Ambulancier (DEA) ou autre certification</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Permis / Licence</strong></td>
+                                            <td>Permis de conduire, licence de transport</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Autre</strong></td>
+                                            <td>Tout autre document professionnel</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="doc-subsection">
+                                <h4>Documents entreprise (admin/owner uniquement)</h4>
+                                <p class="doc-text">
+                                    Les administrateurs et propriétaires ont accès à une vue consolidée de tous les
+                                    documents de l'entreprise via la page "Documents entreprise". Cette page comporte deux
+                                    onglets :
+                                </p>
+                                <ul class="doc-list">
+                                    <li>
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                        </svg>
+                                        <span><strong>Documents entreprise :</strong> Agréments ARS, assurances, documents
+                                            administratifs de la société</span>
+                                    </li>
+                                    <li>
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        </svg>
+                                        <span><strong>Documents salariés :</strong> Consultation et téléchargement des
+                                            documents de tous les employés</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="doc-subsection">
+                                <h4>Types de documents entreprise</h4>
+                                <table class="field-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Agrément</strong></td>
+                                            <td>Agrément ARS pour l'exploitation de véhicules sanitaires</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Assurance</strong></td>
+                                            <td>Contrats d'assurance véhicules et responsabilité civile</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Autre</strong></td>
+                                            <td>Tout autre document administratif de l'entreprise</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="doc-tip">
+                                <div class="doc-tip-title">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    Formats acceptés
+                                </div>
+                                <p>Les documents peuvent être au format PDF, JPG ou PNG. La taille maximale est de 10 Mo par
+                                    fichier.</p>
+                            </div>
+                        </section>
+
+                        <!-- Section Transports -->
+                        <section id="transports" class="doc-section">
+                            <div class="doc-section-header">
+                                <div class="doc-section-icon blue">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+                                    </svg>
+                                </div>
+                                <h3 class="doc-section-title">Courses / Transports</h3>
+                            </div>
+
+                            <div class="doc-subsection">
+                                <h4>Presentation</h4>
+                                <p class="doc-text">
+                                    Le module de gestion des transports est le coeur de l'application. Il vous permet de planifier, organiser et suivre toutes vos courses grâce à un agenda interactif. Vous pouvez assigner un chauffeur, un assistant (pour les ambulances), un véhicule et gérer les adresses de départ et d'arrivée avec l'autocomplétion d'adresses.
+                                </p>
+                            </div>
+
+                            <div class="doc-subsection">
+                                <h4>L'agenda interactif</h4>
+                                <ul class="doc-list">
+                                    <li>
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                        <span><strong>Vue calendrier :</strong> Visualisez vos transports par mois, semaine, jour ou sous forme de liste</span>
+                                    </li>
+                                    <li>
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                                        <span><strong>Création rapide :</strong> Cliquez sur une date pour créer directement un transport</span>
+                                    </li>
+                                    <li>
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                                        <span><strong>Glisser-déposer :</strong> Déplacez un transport vers une autre date en le faisant glisser</span>
+                                    </li>
+                                    <li>
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                                        <span><strong>Détails rapides :</strong> Cliquez sur un événement pour voir tous les détails</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="doc-subsection">
+                                <h4>Types de transport</h4>
+                                <table class="field-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>Description</th>
+                                            <th>Équipage</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>🚗 VSL</strong></td>
+                                            <td>Véhicule Sanitaire Léger pour les patients autonomes</td>
+                                            <td>1 chauffeur</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>🚑 Ambulance</strong></td>
+                                            <td>Transport médicalisé pour les patients allongés ou nécessitant une assistance</td>
+                                            <td>1 chauffeur + 1 assistant</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="doc-subsection">
+                                <h4>Créer un transport</h4>
+                                <div class="doc-step">
+                                    <div class="doc-step-number">1</div>
+                                    <div class="doc-step-content">
+                                        <h5>Sélectionner le type</h5>
+                                        <p>Choisissez entre VSL ou Ambulance. Pour une ambulance, un champ assistant sera affiché.</p>
+                                    </div>
+                                </div>
+                                <div class="doc-step">
+                                    <div class="doc-step-number">2</div>
+                                    <div class="doc-step-content">
+                                        <h5>Informations patient et horaires</h5>
+                                        <p>Sélectionnez le patient, la date et les heures de départ et d'arrivée prévues.</p>
+                                    </div>
+                                </div>
+                                <div class="doc-step">
+                                    <div class="doc-step-number">3</div>
+                                    <div class="doc-step-content">
+                                        <h5>Assigner l'équipage</h5>
+                                        <p>Désignez le chauffeur principal et, si nécessaire, un assistant ambulancier.</p>
+                                    </div>
+                                </div>
+                                <div class="doc-step">
+                                    <div class="doc-step-number">4</div>
+                                    <div class="doc-step-content">
+                                        <h5>Adresses et trajet</h5>
+                                        <p>Saisissez les adresses de départ et destination. L'autocomplétion vous aidera à trouver les adresses exactes.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="doc-subsection">
+                                <h4>Champs du formulaire</h4>
+                                <table class="field-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Champ</th>
+                                            <th>Description</th>
+                                            <th>Statut</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Type de transport</strong></td>
+                                            <td>VSL ou Ambulance</td>
+                                            <td><span class="badge required">Obligatoire</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Patient</strong></td>
+                                            <td>Patient à transporter</td>
+                                            <td><span class="badge required">Obligatoire</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Date</strong></td>
+                                            <td>Date du transport</td>
+                                            <td><span class="badge required">Obligatoire</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Heure départ / arrivée</strong></td>
+                                            <td>Créneau horaire prévu</td>
+                                            <td><span class="badge optional">Optionnel</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Chauffeur</strong></td>
+                                            <td>Ambulancier responsable du transport</td>
+                                            <td><span class="badge required">Obligatoire</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Assistant</strong></td>
+                                            <td>Deuxième membre d'équipage (ambulance)</td>
+                                            <td><span class="badge optional">Optionnel</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Véhicule</strong></td>
+                                            <td>Véhicule assigné au transport</td>
+                                            <td><span class="badge required">Obligatoire</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Adresse de départ</strong></td>
+                                            <td>Lieu de prise en charge du patient</td>
+                                            <td><span class="badge required">Obligatoire</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Adresse de destination</strong></td>
+                                            <td>Lieu de dépose du patient</td>
+                                            <td><span class="badge required">Obligatoire</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Distance</strong></td>
+                                            <td>Distance en kilomètres</td>
+                                            <td><span class="badge optional">Optionnel</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Urgence</strong></td>
+                                            <td>Marquer comme transport urgent</td>
+                                            <td><span class="badge optional">Optionnel</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="doc-tip">
+                                <div class="doc-tip-title">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    Astuce
+                                </div>
+                                <p>L'autocomplétion d'adresses utilise OpenStreetMap. Commencez à taper une adresse et sélectionnez parmi les suggestions.</p>
+                            </div>
+
+                            <div class="doc-warning">
+                                <div class="doc-warning-title">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                    </svg>
+                                    Code couleur
+                                </div>
+                                <p>Les transports VSL sont affichés en bleu, les ambulances en rouge. Les transports urgents sont marqués avec un badge spécial.</p>
                             </div>
                         </section>
 
