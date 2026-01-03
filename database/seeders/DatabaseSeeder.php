@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Patient;
 use App\Models\User;
+use App\Models\Vehicle;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -17,9 +19,7 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        Patient::factory()->count(30)->create();
+        Vehicle::factory()->count(30)->create();
     }
 }
