@@ -7,20 +7,20 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-/**
+    /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $user = Auth::user();
-        
+
         // Récupérer les entreprises de l'utilisateur avec leurs statistiques
         $companies = $user->companies()
             ->wherePivot('is_active', true)
             ->get();
-        
+
         $stats = [];
-        
+
         foreach ($companies as $company) {
             // Statistiques par entreprise
             $stats[] = [
@@ -35,7 +35,7 @@ class DashboardController extends Controller
                 'low_stock_items' => $company->stockItems()->where('quantity', '<', 10)->count(),
             ];
         }
-        
+
         // Statistiques globales
         $globalStats = [
             'total_companies' => $companies->count(),
@@ -43,7 +43,7 @@ class DashboardController extends Controller
             'admin_companies' => $companies->where('pivot.role', 'admin')->count(),
             'employee_companies' => $companies->where('pivot.role', 'employee')->count(),
         ];
-        
+
         return view('dashboard.index', compact('stats', 'globalStats', 'user'));
     }
 
@@ -51,7 +51,7 @@ class DashboardController extends Controller
     {
         return view('dashboard.patient');
     }
-    
+
     public function vehicle()
     {
         return view('dashboard.vehicle');
@@ -62,4 +62,38 @@ class DashboardController extends Controller
         return view('dashboard.user');
     }
 
+    public function disinfection()
+    {
+        return view('dashboard.disinfection');
+    }
+
+    public function documentation()
+    {
+        return view('dashboard.documentation');
+    }
+
+    public function stock()
+    {
+        return view('dashboard.stock');
+    }
+
+    public function myDocuments()
+    {
+        return view('dashboard.my-documents');
+    }
+
+    public function documents()
+    {
+        // Vérifier que l'utilisateur est admin ou owner
+        $company = Auth::user()->companies()->first();
+        if ($company) {
+            $role = strtolower($company->pivot->role);
+            if (!in_array($role, ['admin', 'owner'])) {
+                abort(403, 'Accès réservé aux administrateurs');
+            }
+        }
+        return view('dashboard.documents');
+    }
+
 }
+
