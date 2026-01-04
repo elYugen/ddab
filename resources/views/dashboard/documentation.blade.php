@@ -356,7 +356,7 @@
             <div class="doc-container">
                 <!-- Header -->
                 <div class="doc-header">
-                    <h1>📖 Documentation AmbuGaz</h1>
+                    <h1>📖 Documentation {{ config('app.name') }}</h1>
                     <p>Guide complet d'utilisation de toutes les fonctionnalités du logiciel de gestion pour ambulanciers
                     </p>
                 </div>
@@ -437,6 +437,15 @@
                                                 d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
                                         </svg>
                                         Courses / Transports
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#facturation">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                        </svg>
+                                        Facturation
                                     </a>
                                 </li>
                             </ul>
@@ -1504,8 +1513,131 @@
                             </div>
                         </section>
 
+                        <!-- Section Facturation -->
+                        <section id="facturation" class="doc-section">
+                            <div class="doc-section-header">
+                                <div class="doc-section-icon purple">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                </div>
+                                <h3 class="doc-section-title">Facturation</h3>
+                            </div>
+
+                            <p class="doc-text">Le module de facturation permet de transformer rapidement vos transports terminés en
+                                factures conformes aux normes ARS.</p>
+
+                            <div class="doc-subsection">
+                                <h4>Fonctionnalités principales</h4>
+                                <ul class="doc-list">
+                                    <li>
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 36v-3m-6 6h1m1 0h-5m-9 0h3m2 0h5M9 7h6m-6 3h6m6 1v15m0 0h-5l-2.5-3.5L8 20H3v-15h20v6z"/></svg>
+                                        <span><strong>Calcul automatique :</strong> Tarifs conventionnels (Forfaits, Km) appliqués automatiquement</span>
+                                    </li>
+                                    <li>
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                        <span><strong>Majorations :</strong> Détection automatique des majorations Nuit et Dimanche/Férié</span>
+                                    </li>
+                                    <li>
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                                        <span><strong>Suivi :</strong> Gestion des statuts (Brouillon, Envoyée, Payée, Annulée)</span>
+                                    </li>
+                                    <li>
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+                                        <span><strong>Liaison :</strong> Chaque facture est liée à un transport et un patient unique</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="doc-subsection">
+                                <h4>Générer une facture</h4>
+                                <div class="doc-step">
+                                    <div class="doc-step-number">1</div>
+                                    <div class="doc-step-content">
+                                        <h5>Accéder aux transports à facturer</h5>
+                                        <p>Allez dans le menu <strong>Factures</strong>. Vous verrez une liste de "Transports à facturer" en haut de page. Ce sont les transports terminés qui n'ont pas encore de facture.</p>
+                                    </div>
+                                </div>
+                                <div class="doc-step">
+                                    <div class="doc-step-number">2</div>
+                                    <div class="doc-step-content">
+                                        <h5>Créer la facture</h5>
+                                        <p>Cliquez sur le bouton <strong>Générer Facture</strong> à côté du transport concerné. Le système calculera le montant et créera la facture.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="doc-subsection">
+                                <h4>Gérer les factures</h4>
+                                <p class="doc-text">
+                                    Une fois générées, vos factures apparaissent dans "Historique des factures". Vous disposez de plusieurs actions :
+                                </p>
+                                <ul class="doc-list">
+                                    <li>
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                                        <span><strong>Voir (Aperçu rapide) :</strong> Cliquez sur l'œil pour ouvrir la facture dans une fenêtre modale sans quitter la page. Vous pouvez l'imprimer directement depuis cette fenêtre.</span>
+                                    </li>
+                                    <li>
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                                        <span><strong>Éditer :</strong> Cliquez sur l'icône crayon pour modifier une facture (Dates, lignes, prix). <em>Note : Impossible de modifier une facture envoyée ou payée.</em></span>
+                                    </li>
+                                    <li>
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                        <span><strong>Payer :</strong> Cliquez sur le bouton vert pour marquer une facture comme "PAYÉE" (si elle ne l'est pas déjà).</span>
+                                    </li>
+                                    <li>
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                                        <span><strong>Supprimer :</strong> Cliquez sur la poubelle pour supprimer la facture. Le transport associé reviendra alors dans la liste "À facturer".</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="doc-subsection">
+                                <h4>Modifier une facture</h4>
+                                <p class="doc-text">
+                                    L'outil d'édition s'ouvre dans une fenêtre modale pour plus de rapidité.
+                                </p>
+                                <div class="doc-warning">
+                                    <div class="doc-warning-title">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                        </svg>
+                                        Restriction
+                                    </div>
+                                    <p>Pour garantir l'intégrité comptable, vous ne pouvez modifier que les factures au statut <strong>BROUILLON</strong>. Si une facture est déjà envoyée ou payée, le bouton d'édition sera grisé.</p>
+                                </div>
+                                <div class="doc-step">
+                                    <div class="doc-step-number">1</div>
+                                    <div class="doc-step-content">
+                                        <h5>Informations générales</h5>
+                                        <p>Modifiez la date d'émission, la date d'échéance et le statut de la facture.</p>
+                                    </div>
+                                </div>
+                                <div class="doc-step">
+                                    <div class="doc-step-number">2</div>
+                                    <div class="doc-step-content">
+                                        <h5>Lignes de facturation</h5>
+                                        <p>Ajoutez, supprimez ou modifiez les lignes (description, quantité, prix). Le total est recalculé automatiquement.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="doc-warning">
+                                <div class="doc-warning-title">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                    </svg>
+                                    Important
+                                </div>
+                                <p>Les tarifs appliqués sont des tarifs conventionnels par défaut. Vérifiez toujours le montant avant d'envoyer la facture.</p>
+                            </div>
+                        </section>
+
                         <div class="version-info">
-                            <p>AmbuGaz v1.0 - Documentation mise à jour le {{ date('d/m/Y') }}</p>
+                            <p>{{ config('app.name') }} v1.0 - Documentation mise à jour le {{ date('d/m/Y') }}</p>
                         </div>
                     </div>
                 </div>

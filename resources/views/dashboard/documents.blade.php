@@ -313,6 +313,17 @@
         .tab-content.active {
             display: block;
         }
+
+        /* Ensure DataTables take full width */
+        #companyDocsTable_wrapper,
+        #userDocsTable_wrapper {
+            width: 100%;
+        }
+
+        #companyDocsTable,
+        #userDocsTable {
+            width: 100% !important;
+        }
     </style>
 @endsection
 

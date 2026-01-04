@@ -73,7 +73,9 @@ class TransportController extends Controller
 
             return [
                 'id' => $transport->id,
-                'title' => $patientName . ' - ' . $transport->transport_type,
+                'title' => ($transport->start_time 
+                    ? \Carbon\Carbon::parse($transport->start_time)->format('H:i') . ' - ' 
+                    : '') . $patientName . ' (' . $transport->transport_type . ')',
                 'start' => $startDateTime,
                 'end' => $endDateTime,
                 'backgroundColor' => $transport->transport_type === 'AMBULANCE' ? '#ef4444' : '#3b82f6',
@@ -170,7 +172,7 @@ class TransportController extends Controller
             'transport_date' => 'required|date',
             'start_time' => 'nullable|date_format:H:i',
             'end_time' => 'nullable|date_format:H:i',
-            'is_emergency' => 'boolean',
+            'is_emergency' => 'nullable|boolean',
         ]);
 
         // Vérifier que le patient appartient à l'entreprise
@@ -200,8 +202,8 @@ class TransportController extends Controller
             'destination_address' => $data['destination_address'],
             'distance_km' => $data['distance_km'] ?? 0,
             'transport_date' => $data['transport_date'],
-            'start_time' => $data['start_time'] ? $data['transport_date'] . ' ' . $data['start_time'] : null,
-            'end_time' => $data['end_time'] ? $data['transport_date'] . ' ' . $data['end_time'] : null,
+            'start_time' => $data['start_time'] ?? null,
+            'end_time' => $data['end_time'] ?? null,
             'is_emergency' => $data['is_emergency'] ?? false,
         ]);
 
@@ -240,7 +242,7 @@ class TransportController extends Controller
             'transport_date' => 'required|date',
             'start_time' => 'nullable|date_format:H:i',
             'end_time' => 'nullable|date_format:H:i',
-            'is_emergency' => 'boolean',
+            'is_emergency' => 'nullable|boolean',
         ]);
 
         // Préparer les données de mise à jour
@@ -254,8 +256,8 @@ class TransportController extends Controller
             'destination_address' => $data['destination_address'],
             'distance_km' => $data['distance_km'] ?? 0,
             'transport_date' => $data['transport_date'],
-            'start_time' => $data['start_time'] ? $data['transport_date'] . ' ' . $data['start_time'] : null,
-            'end_time' => $data['end_time'] ? $data['transport_date'] . ' ' . $data['end_time'] : null,
+            'start_time' => $data['start_time'] ?? null,
+            'end_time' => $data['end_time'] ?? null,
             'is_emergency' => $data['is_emergency'] ?? false,
         ];
 
@@ -298,11 +300,11 @@ class TransportController extends Controller
         ];
 
         if (!empty($data['start_time'])) {
-            $updateData['start_time'] = $data['transport_date'] . ' ' . $data['start_time'];
+            $updateData['start_time'] = $data['start_time'];
         }
 
         if (!empty($data['end_time'])) {
-            $updateData['end_time'] = $data['transport_date'] . ' ' . $data['end_time'];
+            $updateData['end_time'] = $data['end_time'];
         }
 
         $transport->update($updateData);
@@ -324,4 +326,6 @@ class TransportController extends Controller
             abort(403, 'Accès interdit');
         }
     }
+
+
 }

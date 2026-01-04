@@ -61,7 +61,6 @@ Route::prefix('/dashboard')->group(function () {
             Route::put('/update/{disinfection}', [DisinfectionController::class, 'update'])->name('dashboard.disinfection.update');
         });
 
-        // Stock routes
         Route::prefix('/stock')->group(function () {
             Route::get('/', [DashboardController::class, 'stock'])->name('dashboard.stock');
             Route::get('/get', [StockController::class, 'index'])->name('dashboard.stock.index');
@@ -73,7 +72,6 @@ Route::prefix('/dashboard')->group(function () {
             Route::delete('/destroy/{stockItem}', [StockController::class, 'destroy'])->name('dashboard.stock.destroy');
         });
 
-        // Mes documents (user's own documents)
         Route::prefix('/my-documents')->group(function () {
             Route::get('/', [DashboardController::class, 'myDocuments'])->name('dashboard.my-documents');
             Route::get('/get', [UserDocumentController::class, 'index'])->name('dashboard.my-documents.index');
@@ -83,7 +81,6 @@ Route::prefix('/dashboard')->group(function () {
             Route::delete('/destroy/{userDocument}', [UserDocumentController::class, 'destroy'])->name('dashboard.my-documents.destroy');
         });
 
-        // Documents entreprise (admin/owner only)
         Route::prefix('/documents')->group(function () {
             Route::get('/', [DashboardController::class, 'documents'])->name('dashboard.documents');
             Route::get('/all', [DocumentController::class, 'index'])->name('dashboard.documents.all');
@@ -96,7 +93,6 @@ Route::prefix('/dashboard')->group(function () {
             Route::delete('/company/destroy/{companyDocument}', [DocumentController::class, 'destroyCompanyDocument'])->name('dashboard.documents.company.destroy');
         });
 
-        // Transport / Courses routes
         Route::prefix('/transport')->group(function () {
             Route::get('/', [DashboardController::class, 'transport'])->name('dashboard.transport');
             Route::get('/calendar', [TransportController::class, 'calendar'])->name('dashboard.transport.calendar');
@@ -109,6 +105,15 @@ Route::prefix('/dashboard')->group(function () {
             Route::put('/update/{transport}', [TransportController::class, 'update'])->name('dashboard.transport.update');
             Route::patch('/update-date/{transport}', [TransportController::class, 'updateDate'])->name('dashboard.transport.update-date');
             Route::delete('/destroy/{transport}', [TransportController::class, 'destroy'])->name('dashboard.transport.destroy');
+        });
+        
+        Route::prefix('/invoice')->group(function () {
+             Route::get('/', [App\Http\Controllers\InvoiceController::class, 'index'])->name('dashboard.invoice.index');
+             Route::get('/create-from/{transport}', [App\Http\Controllers\InvoiceController::class, 'createFromTransport'])->name('dashboard.invoice.create-from-transport');
+             Route::get('/show/{invoice}', [App\Http\Controllers\InvoiceController::class, 'show'])->name('dashboard.invoice.show');
+            Route::get('/edit/{invoice}', [App\Http\Controllers\InvoiceController::class, 'edit'])->name('dashboard.invoice.edit');
+            Route::put('/update/{invoice}', [App\Http\Controllers\InvoiceController::class, 'update'])->name('dashboard.invoice.update');
+             Route::delete('/destroy/{invoice}', [App\Http\Controllers\InvoiceController::class, 'destroy'])->name('dashboard.invoice.destroy');
         });
 
         Route::get('/documentation', [DashboardController::class, 'documentation'])->name('dashboard.documentation');

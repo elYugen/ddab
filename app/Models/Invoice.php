@@ -17,7 +17,8 @@ class Invoice extends Model
         'total_amount',
         'status',
         'issue_date',
-        'due_date'
+        'due_date',
+        'transport_id',
     ];
 
     protected $casts = [
@@ -39,6 +40,11 @@ class Invoice extends Model
     public function patient()
     {
         return $this->belongsTo(Patient::class);
+    }
+
+    public function transport()
+    {
+        return $this->belongsTo(Transport::class);
     }
 
     public function items()

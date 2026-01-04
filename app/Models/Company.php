@@ -34,4 +34,14 @@ class Company extends Model
     {
         return $this->hasMany(StockItems::class);
     }
+
+    public function transports()
+    {
+        return $this->hasMany(Transport::class);
+    }
+
+    public function vehicles()
+    {
+        return $this->hasMany(Vehicle::class);
+    }
 }

@@ -27,8 +27,6 @@ class Transport extends Model
     protected $casts = [
         'transport_date' => 'date',
         'distance_km' => 'decimal:2',
-        'start_time' => 'datetime',
-        'end_time' => 'datetime',
         'is_emergency' => 'boolean',
     ];
 
